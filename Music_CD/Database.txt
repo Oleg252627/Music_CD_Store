@@ -1,0 +1,56 @@
+CREATE DATABASE Music
+GO
+
+USE Music
+GO
+
+CREATE TABLE Disc
+(Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+Pichuri NVARCHAR(400) NULL,
+DiskName NVARCHAR(200) NOT NULL,
+ColectiveName NVARCHAR(200) NOT NULL,
+IzdatelName NVARCHAR(100) NOT NULL,
+ColTrec INT NOT NULL,
+Genre NVARCHAR(100) NOT NULL,
+YearPublishing DATE NOT NULL,
+Cost_price DECIMAL NOT NULL,
+Price DECIMAL NOT NULL)
+GO
+INSERT Disc
+VALUES
+('..\..\imagesMusic\01_56_2.jpg','Лучшие песни','Владимир Высоцкий','Зоря',22,'Шансон','1983-10-16',80,100),
+('..\..\imagesMusic\01_58_17.jpg','Девочка Пай','Михаил Круг','Расвет',30,'Шансон','2001-08-04',90,110),
+('..\..\imagesMusic\1_159_106.jpg','Моя краина','София Яременко','Закат',25,'Классика','2006-10-16',100,120),
+('..\..\imagesMusic\1_165_31.jpg','Люди','Бумбокс','Зоря',15,'Рэп','2010-09-16',95,115),
+('..\..\imagesMusic\1_183_1.jpg','1944','Джамала','Расвет',20,'Классика','2001-11-16',80,100),
+('..\..\imagesMusic\22471_90030413.jpeg','Розкажи...','Ани Лорак','Закат',17,'Классика','2011-10-16',120,140),
+('..\..\imagesMusic\420029_7487690.jpg','25','Скрябин','Зоря',15,'Рэп','2005-04-16',80,100),
+('..\..\imagesMusic\img_0001_9_28.jpg','Хиты','Дзи Дзё','Росвет',18,'Рэп','2007-10-15',90,120),
+('..\..\imagesMusic\img_0010_29.jpg','ONUKA','Onuka','Закат',20,'Классика','2014-10-16',80,100),
+('..\..\imagesMusic\img365_1_9.jpg','Лучшие песни','Виктор Цой','Зоря',21,'Шансон','2003-10-16',80,100)
+GO
+
+CREATE TABLE LoginPassword
+(Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+Login NVARCHAR(100) NOT NULL,
+Password NVARCHAR(100) NOT NULL)
+GO
+INSERT LoginPassword
+VALUES
+('admin','secret')
+GO
+
+CREATE TABLE Buyer
+(Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+FersName NVARCHAR(100) NOT NULL,
+LastName NVARCHAR(100) NOT NULL,
+Col INT NOT NULL)
+GO
+
+CREATE TABLE Checkk
+(Id INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+DataSale date NOT NULL,
+IdDisc int NOT NULL FOREIGN KEY REFERENCES Disc(Id) ON DELETE CASCADE,
+IdBuyer int NOT NULL FOREIGN KEY REFERENCES Buyer(Id) ON DELETE CASCADE,
+Summa decimal NOT NULL)
+GO

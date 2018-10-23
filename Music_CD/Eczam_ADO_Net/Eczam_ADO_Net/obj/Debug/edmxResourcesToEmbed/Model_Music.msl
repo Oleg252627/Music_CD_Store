@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MusicModelStoreContainer" CdmEntityContainer="MusicEntities2">
+    <EntitySetMapping Name="Buyer">
+      <EntityTypeMapping TypeName="MusicModel.Buyer">
+        <MappingFragment StoreEntitySet="Buyer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FersName" ColumnName="FersName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Col" ColumnName="Col" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Checkk">
+      <EntityTypeMapping TypeName="MusicModel.Checkk">
+        <MappingFragment StoreEntitySet="Checkk">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DataSale" ColumnName="DataSale" />
+          <ScalarProperty Name="IdDisc" ColumnName="IdDisc" />
+          <ScalarProperty Name="IdBuyer" ColumnName="IdBuyer" />
+          <ScalarProperty Name="Summa" ColumnName="Summa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Disc">
+      <EntityTypeMapping TypeName="MusicModel.Disc">
+        <MappingFragment StoreEntitySet="Disc">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Pichuri" ColumnName="Pichuri" />
+          <ScalarProperty Name="DiskName" ColumnName="DiskName" />
+          <ScalarProperty Name="ColectiveName" ColumnName="ColectiveName" />
+          <ScalarProperty Name="IzdatelName" ColumnName="IzdatelName" />
+          <ScalarProperty Name="ColTrec" ColumnName="ColTrec" />
+          <ScalarProperty Name="Genre" ColumnName="Genre" />
+          <ScalarProperty Name="YearPublishing" ColumnName="YearPublishing" />
+          <ScalarProperty Name="Cost_price" ColumnName="Cost_price" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoginPassword">
+      <EntityTypeMapping TypeName="MusicModel.LoginPassword">
+        <MappingFragment StoreEntitySet="LoginPassword">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

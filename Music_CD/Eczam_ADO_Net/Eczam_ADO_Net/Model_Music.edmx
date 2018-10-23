@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MusicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Buyer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FersName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Col" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Checkk">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataSale" Type="date" Nullable="false" />
+          <Property Name="IdDisc" Type="int" Nullable="false" />
+          <Property Name="IdBuyer" Type="int" Nullable="false" />
+          <Property Name="Summa" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Disc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Pichuri" Type="nvarchar" MaxLength="400" />
+          <Property Name="DiskName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ColectiveName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="IzdatelName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ColTrec" Type="int" Nullable="false" />
+          <Property Name="Genre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="YearPublishing" Type="date" Nullable="false" />
+          <Property Name="Cost_price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoginPassword">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Checkk__IdBuyer__3E52440B">
+          <End Role="Buyer" Type="Self.Buyer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Checkk" Type="Self.Checkk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buyer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Checkk">
+              <PropertyRef Name="IdBuyer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Checkk__IdDisc__3D5E1FD2">
+          <End Role="Disc" Type="Self.Disc" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Checkk" Type="Self.Checkk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disc">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Checkk">
+              <PropertyRef Name="IdDisc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MusicModelStoreContainer">
+          <EntitySet Name="Buyer" EntityType="Self.Buyer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Checkk" EntityType="Self.Checkk" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Disc" EntityType="Self.Disc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginPassword" EntityType="Self.LoginPassword" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Checkk__IdBuyer__3E52440B" Association="Self.FK__Checkk__IdBuyer__3E52440B">
+            <End Role="Buyer" EntitySet="Buyer" />
+            <End Role="Checkk" EntitySet="Checkk" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Checkk__IdDisc__3D5E1FD2" Association="Self.FK__Checkk__IdDisc__3D5E1FD2">
+            <End Role="Disc" EntitySet="Disc" />
+            <End Role="Checkk" EntitySet="Checkk" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MusicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Buyer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FersName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Col" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Checkk" Relationship="Self.FK__Checkk__IdBuyer__3E52440B" FromRole="Buyer" ToRole="Checkk" />
+        </EntityType>
+        <EntityType Name="Checkk">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataSale" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdDisc" Type="Int32" Nullable="false" />
+          <Property Name="IdBuyer" Type="Int32" Nullable="false" />
+          <Property Name="Summa" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Buyer" Relationship="Self.FK__Checkk__IdBuyer__3E52440B" FromRole="Checkk" ToRole="Buyer" />
+          <NavigationProperty Name="Disc" Relationship="Self.FK__Checkk__IdDisc__3D5E1FD2" FromRole="Checkk" ToRole="Disc" />
+        </EntityType>
+        <EntityType Name="Disc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Pichuri" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="DiskName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ColectiveName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IzdatelName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ColTrec" Type="Int32" Nullable="false" />
+          <Property Name="Genre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="YearPublishing" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Cost_price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Checkk" Relationship="Self.FK__Checkk__IdDisc__3D5E1FD2" FromRole="Disc" ToRole="Checkk" />
+        </EntityType>
+        <EntityType Name="LoginPassword">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Checkk__IdBuyer__3E52440B">
+          <End Role="Buyer" Type="Self.Buyer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Checkk" Type="Self.Checkk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buyer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Checkk">
+              <PropertyRef Name="IdBuyer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Checkk__IdDisc__3D5E1FD2">
+          <End Role="Disc" Type="Self.Disc" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Checkk" Type="Self.Checkk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Disc">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Checkk">
+              <PropertyRef Name="IdDisc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MusicEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Buyer" EntityType="Self.Buyer" />
+          <EntitySet Name="Checkk" EntityType="Self.Checkk" />
+          <EntitySet Name="Disc" EntityType="Self.Disc" />
+          <EntitySet Name="LoginPassword" EntityType="Self.LoginPassword" />
+          <AssociationSet Name="FK__Checkk__IdBuyer__3E52440B" Association="Self.FK__Checkk__IdBuyer__3E52440B">
+            <End Role="Buyer" EntitySet="Buyer" />
+            <End Role="Checkk" EntitySet="Checkk" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Checkk__IdDisc__3D5E1FD2" Association="Self.FK__Checkk__IdDisc__3D5E1FD2">
+            <End Role="Disc" EntitySet="Disc" />
+            <End Role="Checkk" EntitySet="Checkk" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MusicModelStoreContainer" CdmEntityContainer="MusicEntities2">
+          <EntitySetMapping Name="Buyer">
+            <EntityTypeMapping TypeName="MusicModel.Buyer">
+              <MappingFragment StoreEntitySet="Buyer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FersName" ColumnName="FersName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Col" ColumnName="Col" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Checkk">
+            <EntityTypeMapping TypeName="MusicModel.Checkk">
+              <MappingFragment StoreEntitySet="Checkk">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DataSale" ColumnName="DataSale" />
+                <ScalarProperty Name="IdDisc" ColumnName="IdDisc" />
+                <ScalarProperty Name="IdBuyer" ColumnName="IdBuyer" />
+                <ScalarProperty Name="Summa" ColumnName="Summa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Disc">
+            <EntityTypeMapping TypeName="MusicModel.Disc">
+              <MappingFragment StoreEntitySet="Disc">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Pichuri" ColumnName="Pichuri" />
+                <ScalarProperty Name="DiskName" ColumnName="DiskName" />
+                <ScalarProperty Name="ColectiveName" ColumnName="ColectiveName" />
+                <ScalarProperty Name="IzdatelName" ColumnName="IzdatelName" />
+                <ScalarProperty Name="ColTrec" ColumnName="ColTrec" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="YearPublishing" ColumnName="YearPublishing" />
+                <ScalarProperty Name="Cost_price" ColumnName="Cost_price" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginPassword">
+            <EntityTypeMapping TypeName="MusicModel.LoginPassword">
+              <MappingFragment StoreEntitySet="LoginPassword">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
